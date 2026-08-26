@@ -1,0 +1,31 @@
+Trillion/
+│
+├── README.md
+├── requirements.txt
+│
+├── engines/
+│   ├── mag.py
+│   ├── port.py
+│   ├── web.py
+│   ├── index.py
+│   ├── pulse.py
+│   ├── swave.py
+│   └── nstar.py
+│
+├── core/
+│   ├── signal_map.py
+│   ├── interference.py
+│   ├── dominance.py
+│   └── aggregator.py
+│
+├── armac/
+│   ├── fetch.py
+│   └── parser.py
+│
+├── api/
+│   └── app.py
+│
+└── web/
+    ├── index.html
+    ├── chart.js
+    └── styles.css
