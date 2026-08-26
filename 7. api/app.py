@@ -1,61 +1,50 @@
 from flask import Flask, jsonify
-from armac.fetch import fetch
-from armac.parser import parse
-from engines import mag, port, web, index, pulse, swave, nstar
-from core.aggregator import aggregate
-
-app = Flask(__name__)
-
-@app.get(from flask import Flask, jsonify
-from armac.fetch import fetch_armac, fetch_yfinance
-from armac.parser import parse_armac
-from engines import mag, port, web, index, pulse, swave, nstar
-from core.aggregator import aggregate
+from engines.mag import mag_engine
+from engines.port import port_engine
+from engines.web import web_engine
+from engines.index import index_engine
+from engines.pulse import pulse_engine
+from engines.swave import swave_engine
+from engines.nstar import nstar_engine
+from core.aggregator import aggregate_signals
 
 app = Flask(__name__)
 
 @app.get("/run")
-def run():
-    # Try ARMAC first
-    raw = fetch_armac()
-    candles = parse_armac(raw) if raw else []
+def run_all():
+    try:
+        mag = mag_engine()
+        port = port_engine()
+        web = web_engine()
+        index = index_engine()
+        pulse = pulse_engine()
+        swave = swave_engine()
+        nstar = nstar_engine()
 
-    # If ARMAC fails, fall back to yfinance
-    if not candles:
-        candles = fetch_yfinance("NVDA")
+        result = aggregate_signals(
+            mag=mag,
+            port=port,
+            web=web,
+            index=index,
+            pulse=pulse,
+            swave=swave,
+            nstar=nstar
+        )
 
-    engine_results = {
-        "mag": mag.run(candles),
-        "port": port.run(candles),
-        "web": web.run(candles),
-        "index": index.run(candles),
-        "pulse": pulse.run(candles),
-        "swave": swave.run(candles),
-        "nstar": nstar.run(candles)
-    }
+        return jsonify({
+            "mag": mag,
+            "port": port,
+            "web": web,
+            "index": index,
+            "pulse": pulse,
+            "swave": swave,
+            "nstar": nstar,
+            "aggregate": result
+        })
 
-    final = aggregate(candles, engine_results)
-    return jsonify(final)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
-if __name__ == "__main__":
-    app.run(debug=True)
-)
-def run():
-    raw = fetch()
-    candles = parse(raw)
-
-    engine_results = {
-        "mag": mag.run(candles),
-        "port": port.run(candles),
-        "web": web.run(candles),
-        "index": index.run(candles),
-        "pulse": pulse.run(candles),
-        "swave": swave.run(candles),
-        "nstar": nstar.run(candles)
-    }
-
-    final = aggregate(candles, engine_results)
-    return jsonify(final)
 
 if __name__ == "__main__":
     app.run(debug=True)
