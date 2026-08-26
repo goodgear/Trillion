@@ -1,0 +1,22 @@
+# Trillion
+
+Trillion is the engine system powering the P‑ICO organism.  
+It integrates 7 engines:
+
+- Mag
+- Port
+- Web
+- Index
+- Pulse
+- S‑wave
+- N Star
+
+The system connects directly to ARMAC timelapse data and exposes a local API + browser interface for running engines, generating signals, and visualizing outputs.
+
+## Structure
+
+- /engines — individual engine logic
+- /core — interference, dominance, and signal aggregation
+- /armac — ARMAC data fetch + parser
+- /api — backend (Flask)
+- /web — frontend (HTML + JS)
