@@ -1,6 +1,0 @@
-def run(candles):
-    # Mag = trend engine
-    signals = []
-    for c in candles:
-        signals.append("long")
-    return signals
