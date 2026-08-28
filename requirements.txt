@@ -6,3 +6,4 @@ pandas==2.2.2
 alpaca-trade-api
 scipy
 matplotlib
+Flask-SQLAlchemy
