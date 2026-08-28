@@ -23,3 +23,7 @@ def parse_armac(raw):
     #     })
 
     return candles
+import transcript_converter
+
+if __name__ == "__main__":
+    transcript_converter.convert("Once You Master Price Action, Trading Becomes Ridi.txt")

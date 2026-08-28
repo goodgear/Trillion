@@ -76,6 +76,7 @@ def convert_transcript_to_json(transcript_path, output_path):
 
 if __name__ == "__main__":
     # Example usage
-    transcript_file = "Once You Master Price Action, Trading Becomes Ridi.txt"
+    transcript_file = "transcript_file = "repeatable.txt"
+
     output_file = "transcript_logic.json"
     convert_transcript_to_json(transcript_file, output_file)
