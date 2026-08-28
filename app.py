@@ -1,6 +1,10 @@
 from flask import Flask
+from backtest import backtest_bp
 
-app = Flask(__name__)
+app = Flask(app.register_blueprint(backtest_bp)
+_)
+
+app.register_blueprint(backtest_bp)
 
 @app.route("/")
 def home():
