@@ -1,9 +1,9 @@
 from flask import Flask
-from backtest import backtest_bp
+from backtest import backtest_bp   # ← correct import
 
-app = Flask(app.register_blueprint(backtest_bp)
+app = Flask(__name__)              # ← correct Flask constructor
 
-app.register_blueprint(backtest_bp)
+app.register_blueprint(backtest_bp)  # ← correct blueprint registration
 
 @app.route("/")
 def home():
