@@ -1,9 +1,10 @@
 Trillion/
 │
-├── README.md
+├── 1. Root Structure
 ├── requirements.txt
 │
 ├── engines/
+│   ├── __init__.py
 │   ├── mag.py
 │   ├── port.py
 │   ├── web.py
@@ -13,19 +14,26 @@ Trillion/
 │   └── nstar.py
 │
 ├── core/
+│   ├── __init__.py
 │   ├── signal_map.py
 │   ├── interference.py
 │   ├── dominance.py
 │   └── aggregator.py
 │
 ├── armac/
+│   ├── __init__.py
 │   ├── fetch.py
 │   └── parser.py
 │
 ├── api/
-│   └── app.py
+│   ├── __init__.py
+│   ├── app.py
+│   ├── scan.py
+│   ├── backtest.py
+│   └── db.py
 │
 └── web/
+    ├── __init__.py
     ├── index.html
     ├── chart.js
     └── styles.css
