@@ -2,6 +2,10 @@ from flask import Flask
 from db import db
 from models import *
 from backtest import backtest_bp
+from scan import scan_bp
+
+app.register_blueprint(scan_bp)
+
 
 app = Flask(__name__)
 
