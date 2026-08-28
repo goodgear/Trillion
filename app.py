@@ -1,9 +1,18 @@
 from flask import Flask
-from backtest import backtest_bp   # ← correct import
+from db import db
+from models import *
+from backtest import backtest_bp
 
-app = Flask(__name__)              # ← correct Flask constructor
+app = Flask(__name__)
 
-app.register_blueprint(backtest_bp)  # ← correct blueprint registration
+# Database configuration
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://<YOUR_RAILWAY_CONNECTION_STRING>"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
+
+# Blueprints
+app.register_blueprint(backtest_bp)
 
 @app.route("/")
 def home():
@@ -26,6 +35,9 @@ def home():
     </body>
     </html>
     """
+
+with app.app_context():
+    db.create_all()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)
