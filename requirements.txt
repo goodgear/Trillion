@@ -7,3 +7,4 @@ alpaca-trade-api
 scipy
 matplotlib
 Flask-SQLAlchemy
+# cache bust
