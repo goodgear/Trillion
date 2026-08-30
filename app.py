@@ -14,3 +14,7 @@ from bt_engine import backtest_bp
 app.register_blueprint(backtest_bp)
 
 from scan import scan_bp
+
+@app.route('/')
+def home():
+    return "🚀 Trillion Engine Team is Active and Online!"
