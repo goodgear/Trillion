@@ -5,7 +5,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from flask import Flask
 from db import db
 from models import *
-from backtest import backtest_bp
+from bt_engine import backtest_bp
 app.register_blueprint(backtest_bp)
 from scan import scan_bp
 
